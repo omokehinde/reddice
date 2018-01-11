@@ -4,12 +4,13 @@ import webpack from 'webpack';
 export default {
   // devtools: 'eval-source-map',
   entry: [
-    'webpack-hot-middleware/client',
+    // 'webpack-hot-middleware/client',
     path.join(__dirname, '/client/index.js'),
   ],
   output: {
     path: '/',
-    publicPath: '/'
+    publicPath: '/',
+    filename: 'bundle.js'
   },
   plugins: [
     new webpack.NoEmitOnErrorsPlugin()
@@ -18,6 +19,7 @@ export default {
   module: {
     loaders: [
       {
+        exclude: /node_modules/,
         test: /\.js$/,
         include: path.join(__dirname, 'client'),
         loaders: [ 'babel-loader' ]
